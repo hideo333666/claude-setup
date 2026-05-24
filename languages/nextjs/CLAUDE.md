@@ -23,6 +23,58 @@
 
 ## Next.js
 
+### ディレクトリ構成
+- App Router を新規採用する場合は以下を基準にする (Pages Router 既存
+  プロジェクトではこれを強制せず既存構成に従う)。
+
+  ```
+  .
+  ├── src/                       # 任意。採用する場合は app/ も src/ 配下に置く
+  │   ├── app/                   # App Router のルートツリー
+  │   │   ├── layout.tsx         # ルートレイアウト (必須)
+  │   │   ├── page.tsx           # ルートページ
+  │   │   ├── loading.tsx        # Suspense フォールバック (任意)
+  │   │   ├── error.tsx          # エラーバウンダリ (任意)
+  │   │   ├── not-found.tsx      # 404 (任意)
+  │   │   ├── globals.css        # グローバルスタイル
+  │   │   ├── (marketing)/       # Route Group: URL に含めず構造のみ分離
+  │   │   ├── (app)/             # 認証後セクションなど
+  │   │   ├── api/               # Route Handler (route.ts)
+  │   │   └── _components/       # Private Folder: ルーティング対象外
+  │   ├── components/            # 横断的に再利用する UI
+  │   │   ├── ui/                # primitives (Button, Input, ...)
+  │   │   └── <feature>/         # 機能別ドメイン部品
+  │   ├── features/              # 機能単位のドメインロジック (任意)
+  │   │   └── <feature>/{components,hooks,api,types}.ts
+  │   ├── lib/                   # フレームワーク非依存の純粋ロジック
+  │   ├── server/                # サーバ専用ユーティリティ ("server-only")
+  │   ├── hooks/                 # 汎用カスタムフック
+  │   ├── styles/                # Tailwind 設定や追加 CSS
+  │   ├── types/                 # 共有型定義
+  │   └── middleware.ts          # ルートはここ (src/ 採用時)
+  ├── public/                    # 静的アセット (画像 / fonts / robots.txt)
+  ├── tests/ または __tests__/    # E2E や統合テスト置き場
+  ├── next.config.ts
+  ├── tsconfig.json              # paths に "@/*": ["./src/*"] を設定
+  ├── package.json
+  └── .env.local                 # ローカル環境変数 (コミットしない)
+  ```
+
+- ルーティング規約:
+  - `(group)/` は URL に出さない論理グループ化。レイアウト分割に使う。
+  - `_folder/` は Private Folder。ルーティング対象から除外され、
+    `app/` 配下にコンポーネントや fetcher を同居させたいときに使う。
+  - 動的セグメントは `[id]` / catch-all は `[...slug]` / optional は
+    `[[...slug]]`。
+  - 並列ルートは `@slot`、インターセプトルートは `(.)` / `(..)`。
+- コロケーション原則: ページ固有のコンポーネント・テスト・スタイルは
+  そのルートセグメント直下に置く。横断的に使うものだけ
+  `components/` / `lib/` に昇格させる。
+- `src/` を採用するか否かはプロジェクト方針に従う。混在させない。
+- `tsconfig.json` の `paths` は `@/*` を 1 種類だけ定義する。
+  深い相対パス (`../../../`) を避けるための最低限の alias に留め、
+  乱立させない。
+
 ### 規約
 - ルーター方式を自動判定する。`app/` ディレクトリがあれば App Router、
   `pages/` があれば Pages Router。既存のものに合わせ、明示的な依頼が
@@ -59,17 +111,17 @@
   本当に必要なときだけ MSW を使う。
 
 ### パフォーマンス参考資料
-- `.claude/skills/vercel-react-best-practices/` に Vercel Engineering の
+- `.claude/skills/react-best-practices/` に Vercel Engineering の
   React / Next.js パフォーマンス最適化ルール集 (70 ルール / 8 カテゴリ /
-  MIT ライセンス) が同梱されています。バンドルサイズ削減・データ
-  ウォーターフォール解消・Server Component 最適化・再レンダリング
-  抑制などの具体的なレシピが必要なときに `SKILL.md` から該当
-  カテゴリの `rules/*.md` を参照してください。
+  MIT ライセンス) が同梱されています (`/react-best-practices` で呼び出し
+  可)。バンドルサイズ削減・データウォーターフォール解消・Server Component
+  最適化・再レンダリング抑制などの具体的なレシピが必要なときに
+  `SKILL.md` から該当カテゴリの `rules/*.md` を参照してください。
 - 散文・コード内コメント・frontmatter の翻訳対象値はすべて日本語化済み
   (コード自体・API 名・kebab-case ルール ID は原文維持)。翻訳ベース
   commit と上流追従手順は
-  `skills/vercel-react-best-practices/_translation_notice.md` を、
-  訳語統一表は `_translation_glossary.md` を参照してください。
+  `skills/react-best-practices/_translation_notice.md` を、訳語統一表は
+  `skills/react-best-practices/_translation_glossary.md` を参照してください。
 - `AGENTS.md` は上流の build スクリプトで `rules/*.md` から自動生成
   されるドキュメントのため、英語のまま残しています (翻訳しても
   上流の再生成で上書きされる)。

@@ -91,7 +91,7 @@ claude-setup/
 │   ├── go/
 │   ├── rust/
 │   ├── react/
-│   └── nextjs/               # React オーバーレイ + Vercel React Best Practices スキル同梱
+│   └── nextjs/               # react-best-practices スキル同梱
 └── scripts/
     ├── lib.sh                # 共通ヘルパ
     ├── merge-json.sh         # JSON ディープマージ
