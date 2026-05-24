@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python:*)",
+      "Bash(python3:*)",
+      "Bash(pip:*)",
+      "Bash(pip3:*)",
+      "Bash(uv:*)",
+      "Bash(poetry:*)",
+      "Bash(pipenv:*)",
+      "Bash(pytest:*)",
+      "Bash(ruff:*)",
+      "Bash(black:*)",
+      "Bash(mypy:*)",
+      "Bash(flake8:*)"
+    ]
+  }
+}
