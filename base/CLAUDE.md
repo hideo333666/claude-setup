@@ -1,37 +1,37 @@
-# Project Rules (base)
+# プロジェクトルール (base)
 
-This file is installed by [claude-setup](https://github.com/REPLACE_ME/claude-setup).
-The `base` section applies to every project. Language-specific sections may be
-appended below by `install.sh --lang <name>`.
+このファイルは [claude-setup](https://github.com/REPLACE_ME/claude-setup) によって
+インストールされます。`base` セクションは全プロジェクト共通で適用されます。
+言語固有のセクションは `install.sh --lang <name>` によって下に追記されます。
 
-## Communication
+## コミュニケーション
 
-- Match the user's language (English or 日本語).
-- Be concise. Default to short answers; expand only when asked.
-- When proposing a non-trivial change, surface the tradeoff in one sentence
-  before implementing.
+- ユーザーの言語に合わせる (英語 / 日本語)。
+- 簡潔に。デフォルトは短い回答にし、求められたときだけ詳しく説明する。
+- 重要度の高い変更を提案するときは、実装前にトレードオフを 1 文で示す。
 
-## Code
+## コード
 
-- Prefer editing existing files over creating new ones.
-- Don't introduce abstractions, helpers, or feature flags that the current
-  task doesn't require.
-- Don't add comments that restate what the code does. Only write comments
-  for non-obvious WHY (invariants, workarounds, hidden constraints).
-- Don't add error handling for cases that cannot occur. Only validate at
-  trust boundaries (user input, external APIs).
-- If a change deletes code, actually delete it — don't leave "removed: ..."
-  comments or commented-out blocks.
+- 新規ファイルを作る前に、まず既存ファイルの編集で済まないか検討する。
+- 現在のタスクに不要な抽象化・ヘルパー・フィーチャーフラグを導入しない。
+- コードが何をしているか繰り返すだけのコメントは書かない。自明でない
+  「なぜ」(不変条件・回避策・隠れた制約) のときだけコメントを書く。
+- 起こり得ないケースのエラーハンドリングを足さない。検証は信頼境界
+  (ユーザー入力・外部 API) でのみ行う。
+- コードを消すときは実際に消す。「removed: ...」のようなコメントや
+  コメントアウトされたブロックを残さない。
 
-## Tooling
+## ツール
 
-- Use the project's own scripts (`make`, `npm run`, `just`, etc.) over
-  ad-hoc commands when they exist.
-- Never bypass commit hooks (`--no-verify`) unless the user asks for it.
-- Don't run destructive git operations (`reset --hard`, `push --force`,
-  `branch -D`) without explicit confirmation.
+- `make` / `npm run` / `just` など、プロジェクト固有のスクリプトが
+  あればアドホックなコマンドより優先する。
+- ユーザーから明示的に頼まれない限り、commit hook をスキップしない
+  (`--no-verify` を使わない)。
+- 破壊的な git 操作 (`reset --hard` / `push --force` / `branch -D` 等)
+  を、明示的な確認なしに実行しない。
 
-## Secrets
+## シークレット
 
-- Never commit secrets, tokens, or credentials. If a file matches
-  `.env*`, `*credentials*`, `*secret*`, ask before staging.
+- シークレット・トークン・認証情報は絶対にコミットしない。
+  `.env*` / `*credentials*` / `*secret*` にマッチするファイルは
+  ステージング前に確認する。

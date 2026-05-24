@@ -39,7 +39,7 @@ bash install.sh --lang python --scope project             # 実行
 
 | Option       | 説明                                                         | デフォルト |
 | ------------ | ------------------------------------------------------------ | ---------- |
-| `--lang`     | `typescript` / `python` / `go` / `rust` のいずれか           | (なし)     |
+| `--lang`     | `typescript` / `python` / `go` / `rust` / `react` / `nextjs` のいずれか | (なし)     |
 | `--scope`    | `user` (= `~/.claude/`) / `project` (= `./.claude/`)         | `project`  |
 | `--dry-run`  | 何が書き込まれるかを表示するだけで実際には書き換えない       | off        |
 | `--force`    | 既存 `.claude/` のバックアップを取らずに上書き               | off        |
@@ -89,7 +89,9 @@ claude-setup/
 │   ├── typescript/
 │   ├── python/
 │   ├── go/
-│   └── rust/
+│   ├── rust/
+│   ├── react/
+│   └── nextjs/               # React オーバーレイ + Vercel React Best Practices スキル同梱
 └── scripts/
     ├── lib.sh                # 共通ヘルパ
     ├── merge-json.sh         # JSON ディープマージ

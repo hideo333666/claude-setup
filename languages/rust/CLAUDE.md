@@ -1,20 +1,21 @@
 ## Rust
 
-### Conventions
-- Match the edition in `Cargo.toml`. Don't bump it as a side-effect.
-- Prefer `?` over `match` for error propagation. Use `thiserror` /
-  `anyhow` only if the crate already depends on it.
-- Don't add `unsafe` without a `// Safety:` comment that justifies it.
-- Use `cargo clippy --all-targets -- -D warnings` standards: don't
-  introduce new clippy warnings.
+### 規約
+- `Cargo.toml` の edition に合わせる。ついでに上げない。
+- エラー伝播は `match` より `?` を優先する。`thiserror` / `anyhow` は、
+  既にクレートが依存している場合のみ使う。
+- `unsafe` を追加するときは、必ずその根拠を `// Safety:` コメントで残す。
+- `cargo clippy --all-targets -- -D warnings` 基準を守る。新しい clippy
+  警告を増やさない。
 
-### Tooling
-- Run `cargo check` (or `cargo build`) and `cargo clippy` before declaring
-  the change done.
-- Use `cargo fmt` formatting. Don't reformat unrelated files.
-- If a workspace `Justfile` / `Makefile` exists, prefer its recipes.
+### ツール
+- 完了とする前に `cargo check` (または `cargo build`) と `cargo clippy`
+  を実行する。
+- `cargo fmt` のフォーマットに従う。関係のないファイルを再フォーマット
+  しない。
+- ワークスペースに `Justfile` / `Makefile` があれば、そのレシピを優先する。
 
-### Testing
-- Use `#[cfg(test)] mod tests` in the same file for unit tests.
-- Integration tests go in `tests/`. Don't move them mid-task.
-- Run `cargo test` for the crate under change before finishing.
+### テスト
+- 単体テストは同じファイル内の `#[cfg(test)] mod tests` に置く。
+- 結合テストは `tests/` に置く。作業中にあちこち移動させない。
+- 完了とする前に対象クレートの `cargo test` を実行する。

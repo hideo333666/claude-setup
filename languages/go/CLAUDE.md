@@ -1,21 +1,22 @@
 ## Go
 
-### Conventions
-- Match the Go version in `go.mod`. Don't bump it as a side-effect.
-- Errors are values: wrap with `fmt.Errorf("...: %w", err)` and check
-  with `errors.Is` / `errors.As`. Don't introduce a custom error package
-  unless one already exists.
-- Use `any` (Go 1.18+) over `interface{}` for new code if the module's
-  Go version allows.
-- Don't add interfaces for types with a single implementation.
+### 規約
+- `go.mod` に書かれた Go バージョンに合わせる。ついでに上げない。
+- エラーは値として扱う。`fmt.Errorf("...: %w", err)` でラップし、
+  `errors.Is` / `errors.As` でチェックする。既存のカスタムエラーパッケージ
+  が無い限り、新規に導入しない。
+- 新規コードでは `interface{}` より `any` (Go 1.18+) を使う。モジュールの
+  Go バージョンが許す場合のみ。
+- 実装が 1 つしかない型のために interface を切らない。
 
-### Tooling
-- Run `go build ./...` and `go vet ./...` before declaring the change done.
-- Use `gofmt` / `goimports` formatting. Don't reformat unrelated files.
-- If the repo has a `Makefile`, prefer `make test` / `make lint` over
-  invoking `go test` directly.
+### ツール
+- 完了とする前に `go build ./...` と `go vet ./...` を実行する。
+- `gofmt` / `goimports` のフォーマットに従う。関係のないファイルを
+  再フォーマットしない。
+- リポジトリに `Makefile` があるなら、`go test` を直接叩くより
+  `make test` / `make lint` を優先する。
 
-### Testing
-- Use the standard `testing` package and table-driven tests.
-- Only add `testify` / other helpers if the repo already uses them.
-- Run `go test ./...` (or the package under change) before finishing.
+### テスト
+- 標準の `testing` パッケージとテーブル駆動テストを使う。
+- `testify` などのヘルパーは、既にリポジトリで使われている場合のみ追加する。
+- 完了とする前に `go test ./...` (または変更したパッケージ) を実行する。

@@ -33,7 +33,7 @@ SCOPE="project"
 DRY_RUN=0
 FORCE=0
 
-SUPPORTED_LANGS=(typescript python go rust)
+SUPPORTED_LANGS=(typescript python go rust react nextjs)
 
 # --- arg parsing -----------------------------------------------------------
 
@@ -45,7 +45,7 @@ Usage: install.sh [options]
 
 Options:
   --lang <name>     Language overlay to apply on top of base.
-                    One of: typescript | python | go | rust
+                    One of: typescript | python | go | rust | react | nextjs
   --scope <name>    Install target. user => ~/.claude, project => ./.claude
                     (default: project)
   --dry-run         Print what would be done without writing.

@@ -1,23 +1,24 @@
 ## Python
 
-### Conventions
-- Target the Python version declared in `pyproject.toml` /
-  `.python-version` / `setup.cfg`. Don't assume the latest.
-- Type-hint new functions. Don't add type hints to legacy modules in
-  unrelated PRs.
-- Prefer `pathlib.Path` over `os.path` for new code.
-- Use f-strings; don't introduce `%`-formatting or `str.format` unless
-  the file already uses one consistently.
+### 規約
+- `pyproject.toml` / `.python-version` / `setup.cfg` で宣言された
+  Python バージョンを対象にする。最新版を勝手に前提にしない。
+- 新規関数には型ヒントを付ける。関係のない PR で既存コードに型ヒントを
+  後付けしない。
+- 新規コードでは `os.path` より `pathlib.Path` を優先する。
+- f-string を使う。ファイル全体が `%` フォーマットや `str.format` で
+  統一されていない限り、それらを混ぜない。
 
-### Tooling
-- Detect the package manager: `uv.lock` → uv, `poetry.lock` → poetry,
-  `Pipfile.lock` → pipenv, otherwise pip + venv. Match what's present.
-- Use the project's linter (`ruff`, `flake8`) and formatter (`ruff format`,
-  `black`) — don't switch tools mid-project.
-- Run `ruff check` / `mypy` (whichever the project uses) before declaring
-  the change done.
+### ツール
+- パッケージマネージャを自動判定する。`uv.lock` → uv / `poetry.lock` →
+  poetry / `Pipfile.lock` → pipenv / それ以外は pip + venv。既存のものに
+  合わせる。
+- プロジェクトの linter (`ruff` / `flake8`) と formatter (`ruff format` /
+  `black`) を使う。途中でツールを切り替えない。
+- 完了とする前にプロジェクトが使っている `ruff check` / `mypy` を実行する。
 
-### Testing
-- Use pytest if the project uses it; otherwise the project's framework.
-- Don't mock what you can run for real in tests (file I/O, subprocess,
-  in-process databases). Mock at network boundaries.
+### テスト
+- プロジェクトが pytest を使っているなら pytest を使う。それ以外は
+  既存のフレームワークに合わせる。
+- 実体で実行可能なもの (ファイル I/O・サブプロセス・インプロセス DB) を
+  モックしない。モックはネットワーク境界のみ。
