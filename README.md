@@ -12,24 +12,24 @@
 
 ```bash
 # ベースルールのみ
-curl -fsSL https://raw.githubusercontent.com/REPLACE_ME/claude-setup/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/hideo333666/claude-setup/main/install.sh | bash
 
 # TypeScript 用のオーバーレイを重ねる
-curl -fsSL https://raw.githubusercontent.com/REPLACE_ME/claude-setup/main/install.sh \
+curl -fsSL https://raw.githubusercontent.com/hideo333666/claude-setup/main/install.sh \
   | bash -s -- --lang typescript
 ```
 
 ### 個人設定として導入する (`~/.claude/`)
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/REPLACE_ME/claude-setup/main/install.sh \
+curl -fsSL https://raw.githubusercontent.com/hideo333666/claude-setup/main/install.sh \
   | bash -s -- --scope user
 ```
 
 ### ローカルクローンから実行
 
 ```bash
-git clone https://github.com/REPLACE_ME/claude-setup.git
+git clone https://github.com/hideo333666/claude-setup.git
 cd claude-setup
 bash install.sh --lang python --scope project --dry-run   # 差分プレビュー
 bash install.sh --lang python --scope project             # 実行

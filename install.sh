@@ -25,7 +25,7 @@ set -euo pipefail
 
 # --- defaults --------------------------------------------------------------
 
-REPO_URL="${CLAUDE_SETUP_REPO:-https://github.com/REPLACE_ME/claude-setup.git}"
+REPO_URL="${CLAUDE_SETUP_REPO:-https://github.com/hideo333666/claude-setup.git}"
 REPO_BRANCH="${CLAUDE_SETUP_BRANCH:-main}"
 
 LANG=""

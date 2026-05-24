@@ -1,6 +1,6 @@
 # プロジェクトルール (base)
 
-このファイルは [claude-setup](https://github.com/REPLACE_ME/claude-setup) によって
+このファイルは [claude-setup](https://github.com/hideo333666/claude-setup) によって
 インストールされます。`base` セクションは全プロジェクト共通で適用されます。
 言語固有のセクションは `install.sh --lang <name>` によって下に追記されます。
 
