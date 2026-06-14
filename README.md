@@ -82,7 +82,7 @@ brew install jq
 claude-setup/
 ├── install.sh                # エントリポイント
 ├── base/                     # 全プロジェクト共通
-│   ├── skills/
+│   ├── skills/               # issue-create / issue-implement (issue駆動) 同梱
 │   ├── CLAUDE.md
 │   └── settings.json
 ├── languages/                # 言語別オーバーレイ
